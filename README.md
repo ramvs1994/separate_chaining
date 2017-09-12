@@ -7,10 +7,10 @@ you can edit the EXECUTABLE= field to generate your executable with sepecified n
 after making the above changes to the makefile you run the make file using make command, make sure that you are executing the command from the same directory in which your source files and makefile is present. ( main.c insert.c lookup_packet.c delete.c hash_func.c and makefile all in same directory)
 now run the executable generated , you need root priveliges to run the executable since i am using raw sockets. so run the command sudo ./<executable>
 it start displaying the five tuples of the packets flowing via your system. Now run the server program in sepearate terminal and client program in another separate terminal. you can see the clients ip server ip and their respective port numbers and protocol.
-to look up or search ,delete , insert  a packet press ctrl+c in the terminal of main executable then you can see menu with options like lookup , insert , delete and exit . enter your choice as corresponding interger in the menu then you have enter the five tuples of the packet you want to search or insert or delete then corresponding action will happen. 
+to look up or search ,delete , insert  a packet, press ctrl+c in the terminal of main executable then you can see menu with options like lookup , insert , delete and exit . enter your choice as corresponding interger in the menu then you have to enter the five tuples of the packet you want to search or insert or delete then corresponding action will happen. 
 after completion of the task (lookup or deletet or insert) it resumes capturing packets .
 you can exit or lookup again by pressing ctrl+c .
 
 
 NOTE : you can edit the server ip and port in the appropriate pre-processor directives of server and client programs.
-      Run the main executable as super user
+      Run the main executable as super user.
