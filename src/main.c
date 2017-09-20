@@ -120,14 +120,14 @@ int main()
 		unsigned int data_size , saddr_size;
 		unsigned char buf[packet_size];
 	
-		if((rawsock_fd = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL))) <0 ) {
+		if((rawsock_fd = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL))) <0 ) {    /* creating a raw socket */
 	
 			fprintf(stderr, "socket() failed: %s\n", strerror(errno));
         		exit(1);
 		}	
 		
 		while(loop) {
-			signal(SIGINT,func) ;
+			signal(SIGINT,func) ; 				/* to catch the signal ctrl+c */
 		 	saddr_size = sizeof(saddr) ;		
 			data_size = recvfrom(rawsock_fd,buf,packet_size,0,&saddr,&saddr_size) ;
 
@@ -136,16 +136,16 @@ int main()
 				exit(1) ;
 			}
 
-			time(&cldtime);
+			time(&cldtime);				/* to capture the current time */
 			t= ctime(&cldtime) ;
 			
-			get_tuple_para(buf,data_size,t);
-			_key = hash_func((struct packet_info *)tuple_para );
+			get_tuple_para(buf,data_size,t);	/* function to extract five tuple parameters of the received packet*/
+			_key = hash_func((struct packet_info *)tuple_para ); /* generates key from all five tuple parameters extracted */
 			tuple_para->key = _key ;
 			printf("generated key is %u\n",_key) ;
-			insert_packet((void*)tuple_para) ;
+			insert_packet((void*)tuple_para) ; /*this function will store the packet details and its time stamp in hash table at key generated */
 
-			lookup_packet((void *)tuple_para);
+			lookup_packet((void *)tuple_para); /* this will display the packet details stored on display */
 						
 			free(tuple_para);
 
